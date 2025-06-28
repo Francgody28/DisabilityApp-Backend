@@ -1,6 +1,10 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class DisabledPerson(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     first_name = models.CharField(max_length=100)
     middle_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -8,6 +12,7 @@ class DisabledPerson(models.Model):
     gender = models.CharField(max_length=10)
     disability_type = models.CharField(max_length=100)
     contact = models.CharField(max_length=100)
+
 class Location(models.Model):
     full_name = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
